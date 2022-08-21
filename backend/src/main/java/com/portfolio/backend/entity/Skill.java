@@ -11,7 +11,7 @@ import lombok.Setter;
 
 @Getter @Setter
 @Entity
-public class Persona {
+public class Skill {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,25 +20,14 @@ public class Persona {
     @NotNull
     @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
     private String nombre;
-        
-    @NotNull
-    @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
-    private String apellido;
     
     @NotNull
     @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
-    private String posicion;
+    private String tipo;
     
     @NotNull
-    @Size(min = 1, max = 1000, message = "No cumple con regla de longitud")  
-    private String about;
+    @Size(min = 1, max = 3, message = "Debe ser un valor en 1 y 100")
+    private int porcentaje;
     
-    @NotNull
-    @Size(min = 1, max = 255, message = "No cumple con regla de longitud")   
-    private String url_img; 
     
-    @NotNull
-    @Size(min = 1, max = 255, message = "No cumple con regla de longitud")  
-    private String url_back_img;
-   
 }
