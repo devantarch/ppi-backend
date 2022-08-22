@@ -29,7 +29,7 @@ public class EducacionController {
         return "La educacion fue creada exitosamente";
     }
     
-    @DeleteMapping("/educacion/borrar")
+    @DeleteMapping("/educacion/borrar/{id}")
     public String deleteEducacion(@PathVariable Long id){
         iEducacionService.deleteEducacion(id);
         return "La educacion fue borrada correctamente";
@@ -50,7 +50,7 @@ public class EducacionController {
     
     educacion.setNombre_esc(nuevoNombre_esc);
     educacion.setTitulo(nuevoTitulo);
-    educacion.setIncio(nuevoInicio);
+    educacion.setInicio(nuevoInicio);
     educacion.setFin(nuevoFin);
     educacion.setDescripcion(nuevoDescripcion);
     educacion.setUrl_img(nuevoUrl_img);

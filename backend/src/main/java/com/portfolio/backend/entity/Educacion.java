@@ -27,7 +27,7 @@ public class Educacion {
     
     @NotNull
     @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
-    private String incio;
+    private String inicio;
     
     @NotNull
     @Size(min = 1, max = 45, message = "No cumple con regla de longitud")

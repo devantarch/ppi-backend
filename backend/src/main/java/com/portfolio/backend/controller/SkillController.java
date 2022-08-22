@@ -40,7 +40,7 @@ public class SkillController {
     public Skill editSkill (@PathVariable Long id,
                             @RequestParam("nombre") String nuevoNombre,
                             @RequestParam("tipo") String nuevoTipo,
-                            @RequestParam("porcentaje") int nuevoPorcentaje) {
+                            @RequestParam("porcentaje") String nuevoPorcentaje) {
         
         Skill skill = iSkillService.findSkill(id);
         

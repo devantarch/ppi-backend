@@ -26,8 +26,8 @@ public class Skill {
     private String tipo;
     
     @NotNull
-    @Size(min = 1, max = 3, message = "Debe ser un valor en 1 y 100")
-    private int porcentaje;
+    @Size(min = 1, max = 100, message = "Debe ser un valor en 1 y 100")
+    private String porcentaje;
     
     
 }
