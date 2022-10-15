@@ -1,5 +1,6 @@
 package com.portfolio.backend.entity;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,11 +19,11 @@ public class Experiencia {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     
     @NotNull
     @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
-    private String nombre_emp;
+    private String nombreE;
     
     @NotNull
     @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
@@ -47,6 +48,23 @@ public class Experiencia {
     @NotNull
     @Size(min = 1, max = 255, message = "No cumple con regla de longitud")
     private String url;
+    
+    //Constructores
+
+    public Experiencia(String nombreE, String cargo, String inicio, String fin, String tareas, String url_img, String url) {
+        this.nombreE = nombreE;
+        this.cargo = cargo;
+        this.inicio = inicio;
+        this.fin = fin;
+        this.tareas = tareas;
+        this.url_img = url_img;
+        this.url = url;
+    }
+
+    public Experiencia() {
+    }
+    
+    
     
             
     

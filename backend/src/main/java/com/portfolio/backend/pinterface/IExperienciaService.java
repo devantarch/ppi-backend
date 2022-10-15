@@ -14,9 +14,9 @@ public interface IExperienciaService {
     
     
     //Eliminar objeto de tipo Experiencia, por id
-    public void deleteExperiencia(Long id);
+    public void deleteExperiencia(int id);
     
     //Buscar objeto de tipo Experiencia, por id
-    public Experiencia findExperiencia(Long id);
+    public Experiencia findExperiencia(int id);
     
 }
