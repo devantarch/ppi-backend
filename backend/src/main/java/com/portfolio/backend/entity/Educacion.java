@@ -15,11 +15,11 @@ public class Educacion {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     
     @NotNull
     @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
-    private String nombre_esc;
+    private String nombreE;
     
     @NotNull
     @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
@@ -44,5 +44,23 @@ public class Educacion {
     @NotNull
     @Size(min = 1, max = 255, message = "No cumple con regla de longitud")
     private String url;
+
+    public Educacion() {
+    }
+
+    public Educacion(String nombreE, String titulo, String inicio, String fin, String descripcion, String url_img, String url) {
+        this.nombreE = nombreE;
+        this.titulo = titulo;
+        this.inicio = inicio;
+        this.fin = fin;
+        this.descripcion = descripcion;
+        this.url_img = url_img;
+        this.url = url;
+    }
+    
+      
+    
     
 }
+
+
