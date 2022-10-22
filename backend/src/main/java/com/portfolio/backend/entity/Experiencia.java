@@ -1,6 +1,5 @@
 package com.portfolio.backend.entity;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,9 +12,6 @@ import lombok.Setter;
 @Getter @Setter
 @Entity
 public class Experiencia {
-    
-    // En un futuro se integrará tipo de experiencia a partir de la relación con otra tabla.
-    
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,6 +47,9 @@ public class Experiencia {
     
     //Constructores
 
+    public Experiencia() {
+    }
+    
     public Experiencia(String nombreE, String cargo, String inicio, String fin, String tareas, String url_img, String url) {
         this.nombreE = nombreE;
         this.cargo = cargo;
@@ -59,13 +58,6 @@ public class Experiencia {
         this.tareas = tareas;
         this.url_img = url_img;
         this.url = url;
-    }
-
-    public Experiencia() {
-    }
-    
-    
-    
-            
+    }   
     
 }

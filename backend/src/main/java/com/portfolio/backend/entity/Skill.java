@@ -15,7 +15,7 @@ public class Skill {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     
     @NotNull
     @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
@@ -26,8 +26,17 @@ public class Skill {
     private String tipo;
     
     @NotNull
-    @Size(min = 1, max = 100, message = "Debe ser un valor en 1 y 100")
-    private String porcentaje;
+    private int porcentaje;
     
+    // Constructores
+
+    public Skill() {
+    }
+
+    public Skill(String nombre, String tipo, int porcentaje) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.porcentaje = porcentaje;
+    }   
     
 }

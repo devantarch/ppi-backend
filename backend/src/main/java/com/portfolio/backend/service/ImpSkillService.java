@@ -1,38 +1,73 @@
 package com.portfolio.backend.service;
 
 import com.portfolio.backend.entity.Skill;
-import com.portfolio.backend.pinterface.ISkillService;
 import com.portfolio.backend.repository.ISkillRepository;
 import java.util.List;
+import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ImpSkillService implements ISkillService{
+@Transactional
+
+public class ImpSkillService {
     
     @Autowired ISkillRepository iSkillRepository;
     
-    @Override
-    public List<Skill> getSkill(){
-        List<Skill> skill = iSkillRepository.findAll();
-        return skill;
+    public List<Skill> list (){
+    return iSkillRepository.findAll();
     }
     
-    @Override
-    public void saveSkill(Skill skill){
-        iSkillRepository.save(skill);        
+    public Optional<Skill> getOne(int id){
+        return iSkillRepository.findById(id);
     }
     
-    @Override
-    public void deleteSkill(Long id){
+    public Optional<Skill> getByNombre(String nombre){
+        return iSkillRepository.findByNombre(nombre);
+    }
+    
+    public void save(Skill skill){
+        iSkillRepository.save(skill);
+    }
+    
+    public void delete(int id){
         iSkillRepository.deleteById(id);
-    }    
+    }
     
-    @Override
-    public Skill findSkill(Long id){
-        Skill skill = iSkillRepository.findById(id).orElse(null);
-        return skill;
-    }  
+    public boolean existsById(int id){
+        return iSkillRepository.existsById(id);
+    }
+    
+    public boolean existsByNombre(String nombre){
+        return iSkillRepository.existsByNombre(nombre);
+    }
+    
+    
+    
+    
+    
+//    @Override
+//    public List<Skill> getSkill(){
+//        List<Skill> skill = iSkillRepository.findAll();
+//        return skill;
+//    }
+//    
+//    @Override
+//    public void saveSkill(Skill skill){
+//        iSkillRepository.save(skill);        
+//    }
+//    
+//    @Override
+//    public void deleteSkill(Long id){
+//        iSkillRepository.deleteById(id);
+//    }    
+//    
+//    @Override
+//    public Skill findSkill(Long id){
+//        Skill skill = iSkillRepository.findById(id).orElse(null);
+//        return skill;
+//    }  
     
     
 }

@@ -44,26 +44,6 @@ public class ImpEducacionService  {
     }
         
     
-//    @Override
-//    public List<Educacion> getEducacion() {
-//        List<Educacion> educacion = iEducacionRepository.findAll();
-//        return educacion;
-//    }
-//    
-//    @Override
-//    public void saveEducacion(Educacion educacion) {
-//        iEducacionRepository.save(educacion);
-//    }
-//    
-//    @Override
-//    public void deleteEducacion(Long id){
-//        iEducacionRepository.deleteById(id);
-//    }
-//    
-//    @Override
-//    public Educacion findEducacion(Long id){
-//        Educacion educacion = iEducacionRepository.findById(id).orElse(null);
-//        return educacion;
-//    }
+
     
 }

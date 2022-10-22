@@ -14,10 +14,6 @@ public class ImpExperienciaService  {
     
     @Autowired IExperienciaRepository iexperienciaRepository;
     
-    //@Override
-    //public List<Experiencia> getExperiencia() {
-    //List<Experiencia> experiencia = iexperienciaRepository.findAll();
-    //return experiencia;    
     
     
     public List<Experiencia> list(){
@@ -48,24 +44,6 @@ public class ImpExperienciaService  {
         return iexperienciaRepository.existsByNombreE(nombreE);
     }
     
-    
-    
-    
-    
-//    public void saveExperiencia(Experiencia experiencia) {
-//        iexperienciaRepository.save(experiencia);
-//    }
-//
-//    
-//    public void deleteExperiencia(int id) {
-//        iexperienciaRepository.deleteById(id);
-//    }
-//
-//    
-//    public Experiencia findExperiencia(int id) {
-//        Experiencia experiencia = iexperienciaRepository.findById(id).orElse(null);
-//        return experiencia;
-//    }
-    
+        
     
 }

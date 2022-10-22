@@ -1,66 +1,34 @@
-package com.portfolio.backend.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+package com.portfolio.backend.Dto;
 
 
-@Entity
-public class Persona {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    
-    @NotNull
-    @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
+import javax.validation.constraints.NotBlank;
+
+
+public class dtoPersona {
+    @NotBlank
     private String nombre;
-        
-    @NotNull
-    @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
+    @NotBlank
     private String apellido;
-    
-    @NotNull
-    @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
+    @NotBlank
     private String posicion;
-    
-    @NotNull
-    @Size(min = 1, max = 1000, message = "No cumple con regla de longitud")  
+    @NotBlank
     private String about;
-    
-    @NotNull
-    @Size(min = 1, max = 255, message = "No cumple con regla de longitud")   
+    @NotBlank
     private String url_img; 
-    
-    @NotNull
-    @Size(min = 1, max = 255, message = "No cumple con regla de longitud")  
+    @NotBlank
     private String url_back_img;
-    
-    // Constructores
 
-    public Persona() {
+    public dtoPersona() {
     }
 
-    public Persona(String nombre, String apellido, String posicion, String about, String url_img, String url_back_img) {
+    public dtoPersona(String nombre, String apellido, String posicion, String about, String url_img, String url_back_img) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.posicion = posicion;
         this.about = about;
         this.url_img = url_img;
         this.url_back_img = url_back_img;
-    }
-
-    // Getter and Setters
-     
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNombre() {
@@ -110,5 +78,6 @@ public class Persona {
     public void setUrl_back_img(String url_back_img) {
         this.url_back_img = url_back_img;
     }
+
     
 }

@@ -16,7 +16,7 @@ public class Proyecto {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     
     @NotNull
     @Size(min = 1, max = 100, message = "No cumple con regla de longitud")
@@ -29,5 +29,16 @@ public class Proyecto {
     @NotNull
     @Size(min = 1, max = 255, message = "No cumple con regla de longitud")
     private String url;
+    
+    //Constructores
+
+    public Proyecto() {
+    }
+
+    public Proyecto(String nombre, String fecha, String url) {
+        this.nombre = nombre;
+        this.fecha = fecha;
+        this.url = url;
+    }
     
 }

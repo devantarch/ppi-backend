@@ -1,56 +1,130 @@
 package com.portfolio.backend.controller;
 
+import com.portfolio.backend.Dto.dtoSkill;
 import com.portfolio.backend.entity.Skill;
-import com.portfolio.backend.pinterface.ISkillService;
+import com.portfolio.backend.security.controller.Mensaje;
+import com.portfolio.backend.service.ImpSkillService;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/skill")
 public class SkillController {
-    
-    @Autowired ISkillService iSkillService;
-    
-    @GetMapping("/skill/traer")
-    public List<Skill> getSkill() {
-        return iSkillService.getSkill();
+
+    @Autowired
+    ImpSkillService impSkillService;
+
+    @GetMapping("/lista")
+    public ResponseEntity<List<Skill>> list() {
+        List<Skill> list = impSkillService.list();
+        return new ResponseEntity(list, HttpStatus.OK);
     }
-     
-    @PostMapping("skill/crear")
-    public String createSkill(@RequestBody Skill skill){
-        iSkillService.saveSkill(skill);
-        return "La skill fue creada exitosamente";
+
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<Skill> getById(@PathVariable("id") int id) {
+        if (!impSkillService.existsById(id)) {
+            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+        }
+        Skill skill = impSkillService.getOne(id).get();
+        return new ResponseEntity(skill, HttpStatus.OK);
     }
-    
-    @DeleteMapping("skill/borrar/{id}")
-    public String deleteSkill(@PathVariable Long id){
-        iSkillService.deleteSkill(id);
-        return "La skill fue borrada correctamente";
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") int id) {
+        if (!impSkillService.existsById(id)) {
+            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+        }
+        impSkillService.delete(id);
+        return new ResponseEntity(new Mensaje("Skill eliminado"), HttpStatus.OK);
     }
-    
-    // URL: PUERTO/personas/editar/id/nombre&tipo&porcentaje
-    @PutMapping("/skill/editar/{id}")
-    public Skill editSkill (@PathVariable Long id,
-                            @RequestParam("nombre") String nuevoNombre,
-                            @RequestParam("tipo") String nuevoTipo,
-                            @RequestParam("porcentaje") String nuevoPorcentaje) {
-        
-        Skill skill = iSkillService.findSkill(id);
-        
-        skill.setNombre(nuevoNombre);
-        skill.setTipo(nuevoTipo);
-        skill.setPorcentaje(nuevoPorcentaje);
-        
-        iSkillService.saveSkill(skill);
-        return skill;
+
+    @PostMapping("/create")
+    public ResponseEntity<?> create(@RequestBody dtoSkill dtoskill) {
+        if (StringUtils.isBlank(dtoskill.getNombre())) {
+            return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+        }
+        if (impSkillService.existsByNombre(dtoskill.getNombre())) {
+            return new ResponseEntity(new Mensaje("Esa skill ya existe"), HttpStatus.BAD_REQUEST);
+        }
+
+        Skill skill = new Skill(dtoskill.getNombre(), dtoskill.getTipo(), dtoskill.getPorcentaje());
+        impSkillService.save(skill);
+
+        return new ResponseEntity(new Mensaje("Skill agregado"), HttpStatus.OK);
+
     }
-    
-        
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoSkill dtoskill) {
+
+        //Valida si existe el ID
+        if (!impSkillService.existsById(id)) {
+            return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
+        }
+        // Compara nombre de experiencia
+        if (impSkillService.existsByNombre(dtoskill.getNombre()) && impSkillService.getByNombre(dtoskill.getNombre()).get().getId() != id) {
+            return new ResponseEntity(new Mensaje("Ese Skill ya existe"), HttpStatus.BAD_REQUEST);
+        }
+        //Controla que el nombre no esté en blanco
+        if (StringUtils.isBlank(dtoskill.getNombre())) {
+            return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+        }
+
+        Skill skill = impSkillService.getOne(id).get();
+        skill.setNombre(dtoskill.getNombre());
+        skill.setTipo(dtoskill.getTipo());
+        skill.setPorcentaje(dtoskill.getPorcentaje());
+
+        impSkillService.save(skill);
+        return new ResponseEntity(new Mensaje("Skill actualizado"), HttpStatus.OK);
+
+    }
+
+//    @GetMapping("/skill/traer")
+//    public List<Skill> getSkill() {
+//        return iSkillService.getSkill();
+//    }
+//     
+//    @PostMapping("skill/crear")
+//    public String createSkill(@RequestBody Skill skill){
+//        iSkillService.saveSkill(skill);
+//        return "La skill fue creada exitosamente";
+//    }
+//    
+//    @DeleteMapping("skill/borrar/{id}")
+//    public String deleteSkill(@PathVariable Long id){
+//        iSkillService.deleteSkill(id);
+//        return "La skill fue borrada correctamente";
+//    }
+//    
+//    // URL: PUERTO/personas/editar/id/nombre&tipo&porcentaje
+//    @PutMapping("/skill/editar/{id}")
+//    public Skill editSkill (@PathVariable Long id,
+//                            @RequestParam("nombre") String nuevoNombre,
+//                            @RequestParam("tipo") String nuevoTipo,
+//                            @RequestParam("porcentaje") String nuevoPorcentaje) {
+//        
+//        Skill skill = iSkillService.findSkill(id);
+//        
+//        skill.setNombre(nuevoNombre);
+//        skill.setTipo(nuevoTipo);
+//        skill.setPorcentaje(nuevoPorcentaje);
+//        
+//        iSkillService.saveSkill(skill);
+//        return skill;
+//    }
+//    
 }

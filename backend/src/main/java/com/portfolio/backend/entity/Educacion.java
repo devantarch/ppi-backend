@@ -44,6 +44,8 @@ public class Educacion {
     @NotNull
     @Size(min = 1, max = 255, message = "No cumple con regla de longitud")
     private String url;
+    
+    // Constructores
 
     public Educacion() {
     }
@@ -57,9 +59,6 @@ public class Educacion {
         this.url_img = url_img;
         this.url = url;
     }
-    
-      
-    
     
 }
 
