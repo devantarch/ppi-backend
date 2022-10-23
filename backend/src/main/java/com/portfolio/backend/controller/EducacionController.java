@@ -21,75 +21,73 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/educacion")
-@CrossOrigin (origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 
 public class EducacionController {
-    
-    @Autowired ImpEducacionService impEducacionService;
-    
+
+    @Autowired
+    ImpEducacionService impEducacionService;
+
     @GetMapping("/lista")
-    public ResponseEntity<List<Educacion>> list(){
+    public ResponseEntity<List<Educacion>> list() {
         List<Educacion> list = impEducacionService.list();
-        return new ResponseEntity (list, HttpStatus.OK);       
+        return new ResponseEntity(list, HttpStatus.OK);
     }
-    
+
     @GetMapping("/details/{id}")
-    public ResponseEntity<Educacion> getById(@PathVariable("id")int id){
-        if(!impEducacionService.existsById(id)){
-            return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.BAD_REQUEST);            
+    public ResponseEntity<Educacion> getById(@PathVariable("id") int id) {
+        if (!impEducacionService.existsById(id)) {
+            return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.BAD_REQUEST);
         }
-        
+
         Educacion educacion = impEducacionService.getOne(id).get();
         return new ResponseEntity(educacion, HttpStatus.OK);
     }
-    
-    
+
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") int id){
-        if(!impEducacionService.existsById(id)){
+    public ResponseEntity<?> delete(@PathVariable("id") int id) {
+        if (!impEducacionService.existsById(id)) {
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
         }
         impEducacionService.delete(id);
         return new ResponseEntity(new Mensaje("Educación eliminada"), HttpStatus.OK);
     }
-    
+
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoEducacion dtoeducacion) {
-        //En este if sumar todos los campos y acomodar mensaje, son todos obligatorios. Ver lo mismo en experiencia
-        if(StringUtils.isBlank(dtoeducacion.getNombreE())) {
-            return new ResponseEntity(new Mensaje("El nombre es obligatorio"),HttpStatus.BAD_REQUEST);
+
+        if (StringUtils.isBlank(dtoeducacion.getNombreE())) {
+            return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
-        if(impEducacionService.existsByNombreE(dtoeducacion.getNombreE())){
+        if (impEducacionService.existsByNombreE(dtoeducacion.getNombreE())) {
             return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
-            
+
         }
-        
+
         Educacion educacion = new Educacion(
-            dtoeducacion.getNombreE(), dtoeducacion.getTitulo(), dtoeducacion.getInicio(), dtoeducacion.getFin(), 
+                dtoeducacion.getNombreE(), dtoeducacion.getTitulo(), dtoeducacion.getInicio(), dtoeducacion.getFin(),
                 dtoeducacion.getDescripcion(), dtoeducacion.getUrl_img(), dtoeducacion.getUrl()
         );
-        
+
         impEducacionService.save(educacion);
-        return new ResponseEntity (new Mensaje ("Educación creada"), HttpStatus.OK);
-    
-        
+        return new ResponseEntity(new Mensaje("Educación creada"), HttpStatus.OK);
 
     }
-    
+
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoEducacion dtoeducacion) {
-        if(!impEducacionService.existsById(id)){
-           return new ResponseEntity(new Mensaje ("No existe el ID"), HttpStatus.NOT_FOUND);
+        if (!impEducacionService.existsById(id)) {
+            return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
         }
-        if (impEducacionService.existsByNombreE(dtoeducacion.getNombreE()) && impEducacionService.getByNombreE(dtoeducacion.getNombreE()).get().getId() != id){
-            return new ResponseEntity (new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
+        if (impEducacionService.existsByNombreE(dtoeducacion.getNombreE()) && impEducacionService.getByNombreE(dtoeducacion.getNombreE()).get().getId() != id) {
+            return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         }
-        if (StringUtils.isBlank(dtoeducacion.getNombreE())){
-            return new ResponseEntity(new Mensaje ("El campo no puede estar vacio"), HttpStatus.BAD_REQUEST);
+        if (StringUtils.isBlank(dtoeducacion.getNombreE())) {
+            return new ResponseEntity(new Mensaje("El campo no puede estar vacio"), HttpStatus.BAD_REQUEST);
         }
-        
+
         Educacion educacion = impEducacionService.getOne(id).get();
-        
+
         educacion.setNombreE(dtoeducacion.getNombreE());
         educacion.setTitulo(dtoeducacion.getTitulo());
         educacion.setInicio(dtoeducacion.getInicio());
@@ -97,12 +95,11 @@ public class EducacionController {
         educacion.setDescripcion(dtoeducacion.getDescripcion());
         educacion.setUrl_img(dtoeducacion.getUrl_img());
         educacion.setUrl(dtoeducacion.getUrl());
-        
+
         impEducacionService.save(educacion);
-        
-        return new ResponseEntity(new Mensaje ("Educación actualizada"), HttpStatus.OK);
-        
+
+        return new ResponseEntity(new Mensaje("Educación actualizada"), HttpStatus.OK);
+
     }
-   
-    
+
 }

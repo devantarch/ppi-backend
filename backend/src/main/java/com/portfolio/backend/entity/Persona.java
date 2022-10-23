@@ -7,40 +7,38 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
 @Entity
 public class Persona {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @NotNull
     @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
     private String nombre;
-        
+
     @NotNull
     @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
     private String apellido;
-    
+
     @NotNull
     @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
     private String posicion;
-    
-    @NotNull
-    @Size(min = 1, max = 1000, message = "No cumple con regla de longitud")  
-    private String about;
-    
-    @NotNull
-    @Size(min = 1, max = 255, message = "No cumple con regla de longitud")   
-    private String url_img; 
-    
-    @NotNull
-    @Size(min = 1, max = 255, message = "No cumple con regla de longitud")  
-    private String url_back_img;
-    
-    // Constructores
 
+    @NotNull
+    @Size(min = 1, max = 1000, message = "No cumple con regla de longitud")
+    private String about;
+
+    @NotNull
+    @Size(min = 1, max = 255, message = "No cumple con regla de longitud")
+    private String url_img;
+
+    @NotNull
+    @Size(min = 1, max = 255, message = "No cumple con regla de longitud")
+    private String url_back_img;
+
+    // Constructores
     public Persona() {
     }
 
@@ -54,7 +52,6 @@ public class Persona {
     }
 
     // Getter and Setters
-     
     public int getId() {
         return id;
     }
@@ -110,5 +107,5 @@ public class Persona {
     public void setUrl_back_img(String url_back_img) {
         this.url_back_img = url_back_img;
     }
-    
+
 }

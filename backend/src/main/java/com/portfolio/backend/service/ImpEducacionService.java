@@ -11,39 +11,37 @@ import org.springframework.stereotype.Service;
 @Service
 @Transactional
 
-public class ImpEducacionService  {
-    
-    @Autowired IEducacionRepository iEducacionRepository;
-    
-    public List<Educacion> list(){
+public class ImpEducacionService {
+
+    @Autowired
+    IEducacionRepository iEducacionRepository;
+
+    public List<Educacion> list() {
         return iEducacionRepository.findAll();
     }
-    
-    public Optional<Educacion> getOne(int id){
+
+    public Optional<Educacion> getOne(int id) {
         return iEducacionRepository.findById(id);
     }
-   
-    public Optional<Educacion> getByNombreE(String nombreE){
+
+    public Optional<Educacion> getByNombreE(String nombreE) {
         return iEducacionRepository.findByNombreE(nombreE);
     }
-    
-    public void save(Educacion educacion){
-       iEducacionRepository.save(educacion);
+
+    public void save(Educacion educacion) {
+        iEducacionRepository.save(educacion);
     }
-    
-    public void delete(int id){
+
+    public void delete(int id) {
         iEducacionRepository.deleteById(id);
     }
-    
-    public boolean existsById(int id){
+
+    public boolean existsById(int id) {
         return iEducacionRepository.existsById(id);
     }
-    
-    public boolean existsByNombreE(String nombreE){
+
+    public boolean existsByNombreE(String nombreE) {
         return iEducacionRepository.existsByNombreE(nombreE);
     }
-        
-    
 
-    
 }

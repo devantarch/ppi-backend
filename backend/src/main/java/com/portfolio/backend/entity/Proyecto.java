@@ -9,29 +9,29 @@ import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 @Entity
 
 public class Proyecto {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @NotNull
     @Size(min = 1, max = 100, message = "No cumple con regla de longitud")
     private String nombre;
-    
+
     @NotNull
     @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
     private String fecha;
-    
+
     @NotNull
     @Size(min = 1, max = 255, message = "No cumple con regla de longitud")
     private String url;
-    
-    //Constructores
 
+    //Constructores
     public Proyecto() {
     }
 
@@ -40,5 +40,5 @@ public class Proyecto {
         this.fecha = fecha;
         this.url = url;
     }
-    
+
 }

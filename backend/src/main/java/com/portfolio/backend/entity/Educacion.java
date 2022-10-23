@@ -9,44 +9,44 @@ import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 @Entity
 public class Educacion {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @NotNull
     @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
     private String nombreE;
-    
+
     @NotNull
     @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
     private String titulo;
-    
+
     @NotNull
     @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
     private String inicio;
-    
+
     @NotNull
     @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
     private String fin;
-    
+
     @NotNull
     @Size(min = 1, max = 1000, message = "No cumple con regla de longitud")
     private String descripcion;
-    
+
     @NotNull
     @Size(min = 1, max = 255, message = "No cumple con regla de longitud")
     private String url_img;
-    
+
     @NotNull
     @Size(min = 1, max = 255, message = "No cumple con regla de longitud")
     private String url;
-    
-    // Constructores
 
+    // Constructores
     public Educacion() {
     }
 
@@ -59,7 +59,5 @@ public class Educacion {
         this.url_img = url_img;
         this.url = url;
     }
-    
+
 }
-
-

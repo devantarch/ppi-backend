@@ -11,6 +11,7 @@ public class dtoSkill {
     @NotBlank
     private int porcentaje;
 
+    //Constructores
     public dtoSkill() {
     }
 
@@ -20,6 +21,7 @@ public class dtoSkill {
         this.porcentaje = porcentaje;
     }
 
+    //Getters y Setters
     public String getNombre() {
         return nombre;
     }

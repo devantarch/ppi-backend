@@ -1,32 +1,31 @@
-
 package com.portfolio.backend.Dto;
 
 import javax.validation.constraints.NotBlank;
 
 public class dtoEducacion {
-    
-  
-    @NotBlank    
+
+    @NotBlank
     private String nombreE;
-    
-    @NotBlank  
+
+    @NotBlank
     private String titulo;
-    
-    @NotBlank  
+
+    @NotBlank
     private String inicio;
-    
-    @NotBlank  
+
+    @NotBlank
     private String fin;
-    
-    @NotBlank  
+
+    @NotBlank
     private String descripcion;
-    
-    @NotBlank  
+
+    @NotBlank
     private String url_img;
-    
-    @NotBlank  
+
+    @NotBlank
     private String url;
 
+    //Constructores
     public dtoEducacion() {
     }
 
@@ -40,6 +39,7 @@ public class dtoEducacion {
         this.url = url;
     }
 
+    //Getters y Setters
     public String getNombreE() {
         return nombreE;
     }
@@ -95,7 +95,5 @@ public class dtoEducacion {
     public void setUrl(String url) {
         this.url = url;
     }
-    
-    
-    
+
 }

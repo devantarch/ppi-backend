@@ -1,10 +1,9 @@
-
 package com.portfolio.backend.Dto;
 
 import javax.validation.constraints.NotBlank;
 
-
 public class dtoExperiencia {
+
     @NotBlank
     private String nombreE;
     @NotBlank
@@ -19,9 +18,8 @@ public class dtoExperiencia {
     private String url_img;
     @NotBlank
     private String url;
-    
-    //Constructores
 
+    //Constructores
     public dtoExperiencia() {
     }
 
@@ -34,9 +32,8 @@ public class dtoExperiencia {
         this.url_img = url_img;
         this.url = url;
     }
-    
-    //Getters & Setters
 
+    //Getters & Setters
     public String getNombreE() {
         return nombreE;
     }
@@ -92,7 +89,5 @@ public class dtoExperiencia {
     public void setUrl(String url) {
         this.url = url;
     }
-    
-    
-    
+
 }

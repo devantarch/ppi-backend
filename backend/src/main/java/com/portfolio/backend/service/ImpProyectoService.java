@@ -1,37 +1,47 @@
 package com.portfolio.backend.service;
 
 import com.portfolio.backend.entity.Proyecto;
-import com.portfolio.backend.pinterface.IProyectoService;
 import com.portfolio.backend.repository.IProyectoRepository;
 import java.util.List;
+import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ImpProyectoService implements IProyectoService {
-    
-    @Autowired IProyectoRepository iProyectoRepository;
-    
-    @Override
-    public List<Proyecto> getProyecto(){
-        List<Proyecto> proyecto = iProyectoRepository.findAll();
-        return proyecto;
+@Transactional
+
+public class ImpProyectoService {
+
+    @Autowired
+    IProyectoRepository iProyectoRepository;
+
+    public List<Proyecto> list() {
+        return iProyectoRepository.findAll();
     }
-    
-    @Override
-    public void saveProyecto(Proyecto proyecto){
-        iProyectoRepository.save(proyecto);        
+
+    public Optional<Proyecto> getOne(int id) {
+        return iProyectoRepository.findById(id);
     }
-    
-    @Override
-    public void deleteProyecto(Long id){
+
+    public Optional<Proyecto> getByNombre(String nombre) {
+        return iProyectoRepository.findByNombre(nombre);
+    }
+
+    public void save(Proyecto proyecto) {
+        iProyectoRepository.save(proyecto);
+    }
+
+    public void delete(int id) {
         iProyectoRepository.deleteById(id);
     }
-    
-    @Override
-    public Proyecto findProyecto(Long id){
-        Proyecto proyecto = iProyectoRepository.findById(id).orElse(null);
-        return proyecto;        
-    }    
-    
+
+    public boolean existsById(int id) {
+        return iProyectoRepository.existsById(id);
+    }
+
+    public boolean existsByNombre(String nombre) {
+        return iProyectoRepository.existsByNombre(nombre);
+    }
+
 }

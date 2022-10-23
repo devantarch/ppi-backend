@@ -12,62 +12,36 @@ import org.springframework.stereotype.Service;
 @Transactional
 
 public class ImpSkillService {
-    
-    @Autowired ISkillRepository iSkillRepository;
-    
-    public List<Skill> list (){
-    return iSkillRepository.findAll();
+
+    @Autowired
+    ISkillRepository iSkillRepository;
+
+    public List<Skill> list() {
+        return iSkillRepository.findAll();
     }
-    
-    public Optional<Skill> getOne(int id){
+
+    public Optional<Skill> getOne(int id) {
         return iSkillRepository.findById(id);
     }
-    
-    public Optional<Skill> getByNombre(String nombre){
+
+    public Optional<Skill> getByNombre(String nombre) {
         return iSkillRepository.findByNombre(nombre);
     }
-    
-    public void save(Skill skill){
+
+    public void save(Skill skill) {
         iSkillRepository.save(skill);
     }
-    
-    public void delete(int id){
+
+    public void delete(int id) {
         iSkillRepository.deleteById(id);
     }
-    
-    public boolean existsById(int id){
+
+    public boolean existsById(int id) {
         return iSkillRepository.existsById(id);
     }
-    
-    public boolean existsByNombre(String nombre){
+
+    public boolean existsByNombre(String nombre) {
         return iSkillRepository.existsByNombre(nombre);
     }
-    
-    
-    
-    
-    
-//    @Override
-//    public List<Skill> getSkill(){
-//        List<Skill> skill = iSkillRepository.findAll();
-//        return skill;
-//    }
-//    
-//    @Override
-//    public void saveSkill(Skill skill){
-//        iSkillRepository.save(skill);        
-//    }
-//    
-//    @Override
-//    public void deleteSkill(Long id){
-//        iSkillRepository.deleteById(id);
-//    }    
-//    
-//    @Override
-//    public Skill findSkill(Long id){
-//        Skill skill = iSkillRepository.findById(id).orElse(null);
-//        return skill;
-//    }  
-    
-    
+
 }

@@ -1,11 +1,9 @@
-
 package com.portfolio.backend.Dto;
-
 
 import javax.validation.constraints.NotBlank;
 
-
 public class dtoPersona {
+
     @NotBlank
     private String nombre;
     @NotBlank
@@ -15,10 +13,11 @@ public class dtoPersona {
     @NotBlank
     private String about;
     @NotBlank
-    private String url_img; 
+    private String url_img;
     @NotBlank
     private String url_back_img;
 
+    //Constructores
     public dtoPersona() {
     }
 
@@ -31,6 +30,7 @@ public class dtoPersona {
         this.url_back_img = url_back_img;
     }
 
+    //Getters y Setters
     public String getNombre() {
         return nombre;
     }
@@ -79,5 +79,4 @@ public class dtoPersona {
         this.url_back_img = url_back_img;
     }
 
-    
 }

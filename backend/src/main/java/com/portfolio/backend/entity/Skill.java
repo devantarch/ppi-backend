@@ -9,27 +9,27 @@ import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 @Entity
 public class Skill {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @NotNull
     @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
     private String nombre;
-    
+
     @NotNull
     @Size(min = 1, max = 45, message = "No cumple con regla de longitud")
     private String tipo;
-    
+
     @NotNull
     private int porcentaje;
-    
-    // Constructores
 
+    // Constructores
     public Skill() {
     }
 
@@ -37,6 +37,6 @@ public class Skill {
         this.nombre = nombre;
         this.tipo = tipo;
         this.porcentaje = porcentaje;
-    }   
-    
+    }
+
 }
